@@ -29,7 +29,6 @@ public class FerryManagerDummy implements CustomerInterface {
         new Departure(new Date(), 200, 6);
         new Departure(new Date(), 200, 3);
         new Departure(new Date(), 200, 1);
-        
     }
 
     @Override
@@ -46,12 +45,16 @@ public class FerryManagerDummy implements CustomerInterface {
 
     @Override
     public ReservationDetail getReservation(ReservationIdentifier reservationIdentifier) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Reservation.find(reservationIdentifier.getId()).getReservationDetail();
     }
 
     @Override
-    public ReservationDetail saveReservation(DepartureIdentifier departureIdentifier, int passengersNb, int numberOfResidents, boolean car, int numberOfHeavyMachinery, int numberOfLorries, String customerName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ReservationDetail saveReservation(DepartureIdentifier departureIdentifier, int passengersNb, int numberOfResidents, int cars, int numberOfHeavyMachinery, int numberOfLorries, String customerName) {
+        
+        Reservation reservation = new Reservation(Departure.find(departureIdentifier.getId()), customerName, numberOfResidents);
+        
+        return reservation.getReservationDetail();
+        
     }
 
     @Override
@@ -60,8 +63,16 @@ public class FerryManagerDummy implements CustomerInterface {
     }
 
     @Override
-    public ReservationDetail updateReservation(ReservationIdentifier reservationIdentifier, DepartureIdentifier departureIdentifier, int passengersNb, int numberOfResidents, boolean car, int numberOfHeavyMachinery, int numberOfLorries, String customerName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ReservationDetail updateReservation(ReservationIdentifier reservationIdentifier, DepartureIdentifier departureIdentifier, int passengersNb, int numberOfResidents, int cars, int numberOfHeavyMachinery, int numberOfLorries, String customerName) {
+        Reservation reservation = Reservation.find(reservationIdentifier.getId());
+        reservation.setDeparture(Departure.find(departureIdentifier.getId()));
+        reservation.setAliens(passengersNb);
+        reservation.setResidents(numberOfResidents);
+        reservation.setCars(cars);
+        reservation.setHeavyMachinery(numberOfHeavyMachinery);
+        reservation.setLorries(numberOfLorries);
+        reservation.setCustomer(customerName);
+        return reservation.getReservationDetail();
     }
 
     @Override

@@ -31,15 +31,19 @@
         <dependency>
             <groupId>B</groupId>
             <artifactId>ContractTest</artifactId>
-            <version>1</version>
+            <version>1.0-20170104.202541-2</version>
         </dependency>
+
+
 
         <dependency>
             <groupId>B</groupId>
             <artifactId>ContractTest</artifactId>
-            <version>1</version>
+            <version>1.0-20170104.202541-2</version>
             <classifier>tests</classifier>
         </dependency>
+
+
 
 
 

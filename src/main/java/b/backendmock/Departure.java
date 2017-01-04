@@ -6,6 +6,7 @@
 package b.backendmock;
 
 import generalstuff.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,12 +18,12 @@ import java.util.Map;
  */
 public class Departure {
     
-    private static Map<Long,Departure> departures = new HashMap<>();
+    private static ArrayList<Departure> departures = new ArrayList<Departure>();
     private static int nextId = 0;
     public static Collection<Departure> list() {
-        return departures.values();
+        return departures;
     }
-    public static Departure find(long id) {
+    public static Departure find(int id) {
     return departures.get(id);
     }
     
@@ -46,6 +47,7 @@ public class Departure {
         this.departureTime = departureTime;
         this.pricePerPerson = pricePerPerson;
         this.remainingPeople = remainingPeople;
+        Departure.departures.add(this);
     }
     public Departure(int id, Date departureTime, LineSummary lineSummary, FerrySummary ferrySummary, long pricePerPerson, long pricePerCar, long pricePerLorry, long pricePerHeavy, long pricePerResident, int remainingPeople, int remainingCars, int remainingLorries, int remainingHeavy) {
         this.id = id;

@@ -8,6 +8,7 @@ package b.backendmock;
 import generalstuff.*;
 import java.util.Date;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,12 +28,12 @@ import javax.persistence.ManyToOne;
 
 public class Reservation {
     
-    private static Map<Long,Reservation> reservations = new HashMap<>();
+    private static ArrayList<Reservation> reservations = new ArrayList<Reservation>();
     private static int nextId = 0;
     public static Collection<Reservation> list() {
-        return reservations.values();
+        return reservations;
     }
-    public static Reservation find(long id) {
+    public static Reservation find(int id) {
     return reservations.get(id);
     }
     
@@ -52,6 +53,7 @@ public class Reservation {
         this.departure = departure;
         this.customer = customer;
         this.residents = residents;
+        Reservation.reservations.add(this);
         
     }
     public Reservation(Departure departure, String customer, int residents, int aliens, int cars, int lorries, int heavyMachinery, int totalprice) {
@@ -78,5 +80,102 @@ public class Reservation {
         ReservationDetail reservationDetail = new ReservationDetail(dateMade, departure.getDepartureSummary(), customer, id, residents, cars, lorries, heavyMachinery, totalPrice, cars);
         return reservationDetail;
     }
+
+    public static ArrayList<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public static void setReservations(ArrayList<Reservation> reservations) {
+        Reservation.reservations = reservations;
+    }
+
+    public static int getNextId() {
+        return nextId;
+    }
+
+    public static void setNextId(int nextId) {
+        Reservation.nextId = nextId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Departure getDeparture() {
+        return departure;
+    }
+
+    public void setDeparture(Departure departure) {
+        this.departure = departure;
+    }
+
+    public String getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
+    public int getResidents() {
+        return residents;
+    }
+
+    public void setResidents(int residents) {
+        this.residents = residents;
+    }
+
+    public int getAliens() {
+        return aliens;
+    }
+
+    public void setAliens(int aliens) {
+        this.aliens = aliens;
+    }
+
+    public int getCars() {
+        return cars;
+    }
+
+    public void setCars(int cars) {
+        this.cars = cars;
+    }
+
+    public int getLorries() {
+        return lorries;
+    }
+
+    public void setLorries(int lorries) {
+        this.lorries = lorries;
+    }
+
+    public int getHeavyMachinery() {
+        return heavyMachinery;
+    }
+
+    public void setHeavyMachinery(int heavyMachinery) {
+        this.heavyMachinery = heavyMachinery;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public Date getDateMade() {
+        return dateMade;
+    }
+
+    public void setDateMade(Date dateMade) {
+        this.dateMade = dateMade;
+    }
+    
 
 }
