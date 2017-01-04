@@ -26,8 +26,9 @@
         <dependency>
             <groupId>B</groupId>
             <artifactId>FerryProjectContract</artifactId>
-            <version>1.0-20170103.155036-8</version>
+            <version>1.0-20170104.194359-9</version>
         </dependency>
+
         <dependency>
             <groupId>B</groupId>
             <artifactId>ContractTest</artifactId>
